@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Temperatura Ambiente</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="css/toastr.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="pgInfo" data-role="page">
+		<header data-role="header" data-position="fixed" class="cor-azul"
+			data-theme="b">
+			<h1>Informações</h1>
+		</header>
+		<article data-role="content">
+			<div data-role="collapsibleset" data-theme="a" data-content-theme="a"
+				data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+				<div data-role="collapsible" data-collapsed="false">
+					<h3>Introdução</h3>
+					<p>A aplicação é destinada ao gerenciamento de temperatura de
+						sensores instalados nos ambientes cadastrados na aplicação.
+						Permitindo que a aplicação seja utilizada em diversos contextos, e
+						customizada de acordo com as necessidades específicas do negócio.</p>
+					<p>
+					<div>
+						<!--<video id="myVideoProjeto" width="40%" height="20%" preload="auto" controls="controls"> 
+    							<source src="videos/projetoTempAmbiente.mp4" type="video/mp4"> 
+							</video>-->
+
+						<iframe width="854" height="480"
+							src="https://www.youtube.com/embed/EPYtzNd7uzw" frameborder="0"
+							allowfullscreen> </iframe>
+
+						<!--<a href="#popupVideo" data-rel="popup" data-position-to="window" data-inline="true">
+								<img class="img-thumbnail"
+									src="images/projetoTempAmbienteFirstFrame.png"
+									style="width: 30%">
+							</a>
+							<div data-role="popup" id="popupVideo" data-overlay-theme="a" data-theme="d" 								
+								data-tolerance="15,15" class="ui-content">
+								<a href="#" data-rel="back"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Fechar</a>
+								<video id="myVideoProjeto" width="100%" height="100%" preload="auto" controls="controls"> 
+    								<source src="videos/projetoTempAmbiente.mp4" type="video/mp4"> 
+								</video>
+							</div>-->
+					</div>
+					</p>
+					<p>Na imagem abaixo, a placa Arduino, conectada a um sensor de
+						temperatura, envia as informações sobre a temperatura (Celsius) em
+						um intervalo regular de tempo para o serviço de IoT Foundation no
+						IBM Bluemix por meio do protocolo de comunicação do IoT - MQTT, e
+						a temperatura do sensor é registrada no banco de dados da
+						aplicação de acordo com o sensor cadastrado na aplicação.</p>
+					<p>
+						<a href="#popupSensorDHT" data-rel="popup"
+							data-position-to="window" data-transition="fade"> <img
+							class="img-thumbnail" src="images/sensor_dht11.jpg"
+							style="width: 30%"></a>
+					<div data-role="popup" id="popupSensorDHT" data-overlay-theme="b"
+						data-theme="b" data-corners="false">
+						     <a href="#" data-rel="back"
+							class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Fechar</a><img
+							class="popphoto" src="images/sensor_dht11.jpg"
+							style="max-height: 512px;">
+					</div>
+					</p>
+					<p>Sempre que a temperatura do sensor é atualizada no banco de
+						dados da aplicação, é realizado o cálculo médio da temperatura do
+						ambiente, e informado na tela principal da aplicação junto aos
+						sensores em alerta.</p>
+					<p>A temperatura do sensor correspondente a imagem, é
+						atualizada no registro de Sensor Real da aplicação. Foram
+						adicionados outros sensores simulados no serviço de IoT Foundation
+						no IBM Bluemix.</p>
+					<p>Quando a temperatura do sensor não está no intervalo de
+						temperatura minímo e máximo definido para o ambiente, as
+						informações do sensor são exibidas na tela principal da aplicação
+						como alerta.</p>
+					<p>Na imagem abaixo, a temperatura do Sensor Real é de 19 °C, e
+						o intervalo de temperatura definido para o ambiente do sensor é de
+						20 °C a 30 °C, assim, o sensor é exibido como alerta na aplicação.
+						Considerando todos os sensores que estão no ambiente Sala de
+						Reunião 1 - 3o Andar, a temperatura média do ambiente corresponde
+						a 36 °C, e este ambiente pertence ao local IBM Tutóia SP.</p>
+					<p>
+					<div class="imagemInfoCenter">
+						<a href="#popupSensorAlerta" data-rel="popup"
+							data-position-to="window" data-transition="fade"> <img
+							class="img-thumbnail" src="images/sensor_alerta.jpg"
+							style="width: 30%"></a>
+						<div data-role="popup" id="popupSensorAlerta"
+							data-overlay-theme="b" data-theme="b" data-corners="false">
+							     <a href="#" data-rel="back"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Fechar</a><img
+								class="popphoto" src="images/sensor_alerta.jpg"
+								style="max-height: 512px;">
+						</div>
+					</div>
+					</p>
+				</div>
+				<div data-role="collapsible">
+					<h3>Manual do Usuário</h3>
+					Cadastro deve ser realizado na seguinte ordem:
+					<ol>
+						<li><a href="#pgAddlocaInfo">Cadastro de Local</a></li>
+						<li><a href="#pgAddAmbienteInfo">Cadastro de Ambiente</a></li>
+						<li><a href="#pgAddSensorInfo">Cadastro de Sensor</a></li>
+					</ol>
+				</div>
+				<div data-role="collapsible">
+					<h3>Sobre o Projeto</h3>
+					<p>Este projeto foi criado para a busca de conhecimento sobre a
+						plataforma IBM Bluemix e do serviço IoT - Internet of Things:</p>
+					<div>
+						<p>
+							<script type="IN/MemberProfile"
+								data-id="https://www.linkedin.com/in/danielamaravaz"
+								data-format="inline" data-related="false">
+							</script>
+						</p>
+						<p>
+							<a class="ui-btn-inner ui-btn-corner-all" data-mini="true"
+								data-iconpos="left" data-inline="true" data-role="button"
+								data-icon="myapp-github"
+								href="http://daniimara.github.io/AppWeb/">&nbsp@daniimara</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</article>
+		<footer data-role="footer" data-position="fixed" data-theme="b">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#" id="linkIndex" data-icon="home">Home</a></li>
+					<li><a href="#" id="linkLocal" data-icon="grid">Local</a></li>
+					<li><a href="#" id="linkAmbiente" data-icon="grid">Ambiente</a></li>
+					<li><a href="#" id="linkSensor" data-icon="grid">Sensor</a></li>
+					<li><a href="#" id="linkInfo" data-icon="info">Info</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<div id="pgAddlocaInfo" data-role="page">
+		<header data-role="header" data-position="fixed" class="cor-azul"
+			data-theme="b">
+			<h1>Informações Sobre Local</h1>
+			<a data-role="button" id="pgAddLocalBack" data-icon="back"
+				class="ui-btn-left">Voltar</a>
+		</header>
+		<article id="pgAddLocalCnt" data-role="content">
+			<p>A tela inicial de local, exibe todos os locais cadastrados:</p>
+			<ul>
+				<li><p>Para cadastrar um novo local, selecione o botão
+						"Novo" logo acima no canto direito da tela. Será necessário
+						informar os seguintes campos:</p>
+					<ol>
+						<li>Campo Descrição: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico.</span></li>
+						<li>Campo Status: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar as opções Ativo e
+								Inativo.</span></li>
+						<li>Selecione a opção "Salvar".</li>
+					</ol></li>
+				<li><p>Para alterar um local, selecione um item da lista.
+						Assim será possivel modificar os seguintes campos:</p>
+					<ol>
+						<li>Campo Descrição: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico.</span></li>
+						<li>Campo Status: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar as opções Ativo e
+								Inativo.</span></li>
+						<li>Selecione a opção "Salvar".</li>
+					</ol></li>
+				<li><p>Para excluir um local, selecione um item da lista.</p>
+					<ol>
+						<li>Selecione o botão "Excluir".</li>
+						<li>Confirme que deseja realmente excluir o item escolhido.</li>
+					</ol></li>
+			</ul>
+			<div class="imagemInfo">
+				<a href="#popupLocal" data-rel="popup" data-position-to="window"
+					data-transition="fade"> <img class="popphoto"
+					src="images/telaLocal.jpg" style="width: 50%;"></a>
+				<div data-role="popup" id="popupLocal" data-overlay-theme="b"
+					data-theme="b" data-corners="false">
+					     <a href="#" data-rel="back"
+						class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Fechar</a><img
+						class="popphoto" src="images/telaLocal.jpg"
+						style="max-height: 512px;">
+				</div>
+			</div>
+		</article>
+		<footer data-role="footer" data-position="fixed" data-theme="b">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#" id="linkIndexInfLocal" data-icon="home">Home</a></li>
+					<li><a href="#" id="linkLocalInfLocal" data-icon="grid">Local</a></li>
+					<li><a href="#" id="linkAmbienteInfLocal" data-icon="grid">Ambiente</a></li>
+					<li><a href="#" id="linkSensorInfLocal" data-icon="grid">Sensor</a></li>
+					<li><a href="#" id="linkInfoLocal" data-icon="info">Info</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<div id="pgAddAmbienteInfo" data-role="page">
+		<header data-role="header" data-position="fixed" class="cor-azul"
+			data-theme="b">
+			<h1>Informações Sobre Ambiente</h1>
+			<a data-role="button" id="pgAddAmbienteBack" data-icon="back"
+				class="ui-btn-left">Voltar</a>
+		</header>
+		<article id="pgAddAmbienteCnt" data-role="content">
+			<p>A tela inicial de Ambiente, exibe todos os Ambientes
+				cadastrados:</p>
+			<ul>
+				<li><p>Para cadastrar um novo Ambiente, selecione o botão
+						"Novo" logo acima no canto direito da tela. Será necessário
+						informar os seguintes campos:</p>
+					<ol>
+						<li>Campo Descrição: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico.</span></li>
+						<li>Campo Status: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar as opções Ativo e
+								Inativo.</span></li>
+						<li>Campo Local: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar os locais cadastrados
+								anteriormente.</span></li>
+						<li>Campo Temperatura Mínima: <span style='color: red;'>Este
+								campo é obrigatório e numérico.</span></li>
+						<li>Campo Temperatura Média: <span style='color: red;'>Este
+								campo corresponde a temperatura média do ambiente, ele será
+								calculado automaticamente quando a temperatura do sensor for
+								atualizada pelo serviço de IoT no IBM Bluemix.</span></li>
+						<li>Campo Temperatura Máxima: <span style='color: red;'>Este
+								campo é obrigatório e numérico.</span></li>
+						<li>Selecione a opção "Salvar"</li>
+					</ol></li>
+				<li><p>Para alterar um Ambiente, selecione um item da
+						lista. Assim será possivel modificar os seguintes campos:</p>
+					<ol>
+						<li>Campo Descrição: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico. </span></li>
+						<li>Campo Status: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar as opções Ativo e
+								Inativo.</span></li>
+						<li>Campo Local: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar os locais cadastrados
+								anteriormente.</span></li>
+						<li>Campo Temperatura Mínima: <span style='color: red;'>Este
+								campo é obrigatório e numérico.</span></li>
+						<li>Campo Temperatura Média: <span style='color: red;'>Este
+								campo corresponde a temperatura média do ambiente, ele será
+								calculado automaticamente quando a temperatura do sensor for
+								atualizada pelo serviço de IoT no IBM Bluemix.</span></li>
+						<li>Campo Temperatura Máxima: <span style='color: red;'>Este
+								campo é obrigatório e numérico.</span></li>
+						<li>Selecione a opção "Salvar"</li>
+					</ol></li>
+				<li><p>Para excluir um Ambiente, selecione um item da
+						lista.</p>
+					<ol>
+						<li>Selecione o botão "Excluir".</li>
+						<li>Confirme que deseja realmente excluir o item escolhido.</li>
+					</ol></li>
+			</ul>
+			<div class="imagemInfo">
+				<a href="#popupAmbiente" data-rel="popup" data-position-to="window"
+					data-transition="fade"> <img class="popphoto"
+					src="images/telaAmbiente.jpg" style="width: 50%"></a>
+				<div data-role="popup" id="popupAmbiente" data-overlay-theme="b"
+					data-theme="b" data-corners="false">
+					     <a href="#" data-rel="back"
+						class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Fechar</a><img
+						class="popphoto" src="images/telaAmbiente.jpg"
+						style="max-height: 512px;">
+				</div>
+			</div>
+		</article>
+		<footer data-role="footer" data-position="fixed" data-theme="b">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#" id="linkIndexInfAmbiente" data-icon="home">Home</a></li>
+					<li><a href="#" id="linkLocalInfAmbiente" data-icon="grid">Local</a></li>
+					<li><a href="#" id="linkAmbienteInfAmbiente" data-icon="grid">Ambiente</a></li>
+					<li><a href="#" id="linkSensorInfAmbiente" data-icon="grid">Sensor</a></li>
+					<li><a href="#" id="linkInfoAmbiente" data-icon="info">Info</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<div id="pgAddSensorInfo" data-role="page">
+		<header data-role="header" data-position="fixed" class="cor-azul"
+			data-theme="b">
+			<h1>Informações Sobre Sensor</h1>
+			<a data-role="button" id="pgAddSensorBack" data-icon="back"
+				class="ui-btn-left">Voltar</a>
+		</header>
+		<article id="pgAddSensorCnt" data-role="content">
+			<p>A tela inicial de Sensor, exibe todos os Sensores cadastrados:</p>
+			<ul>
+				<li><p>Para cadastrar um novo Sensor, selecione o botão
+						"Novo" logo acima no canto direito da tela. Será necessário
+						informar os seguintes campos:</p>
+					<ol>
+						<li>Campo Descrição: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico.</span></li>
+						<li>Campo Id Sensor: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico, com tamanho de 12
+								caracteres.</span></li>
+						<li>Campo Status: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar as opções Ativo e
+								Inativo.</span></li>
+						<li>Campo Ambiente: <span style='color: red;'>Este
+								campo é obrigatório e será possivel selecionar os ambientes
+								cadastrados anteriormente.</span></li>
+						<li>Selecione a opção "Salvar".</li>
+					</ol></li>
+				<li><p>Para alterar um Sensor, selecione um item da lista.
+						Assim será possivel modificar os seguintes campos:</p>
+					<ol>
+						<li>Campo Descrição: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico.</span></li>
+						<li>Campo Id Sensor: <span style='color: red;'>Este
+								campo é obrigatório e alfanumérico, com tamanho de 12
+								caracteres.</span></li>
+						<li>Campo Status: <span style='color: red;'>Este campo
+								é obrigatório e será possivel selecionar as opções Ativo e
+								Inativo.</span></li>
+						<li>Campo Ambiente: <span style='color: red;'>Este
+								campo é obrigatório e será possivel selecionar os ambientes
+								cadastrados anteriormente.</span></li>
+						<li>Campo Temperatura: <span style='color: red;'>Este
+								campo será preenchido automaticamente de acordo com a
+								temperatura do sensor.</span></li>
+						<li>Selecione a opção "Salvar".</li>
+					</ol></li>
+				<li><p>Para excluir um Sensor, selecione um item da lista.</p>
+					<ol>
+						<li>Selecione o botão "Excluir".</li>
+						<li>Confirme que deseja realmente excluir o item escolhido.</li>
+					</ol></li>
+			</ul>
+			<div class="imagemInfo">
+				<a href="popupSensor" data-rel="popup" data-position-to="window"
+					data-transition="fade"> <img class="popphoto"
+					src="images/telaSensor.jpg" style="width: 50%"></a>
+				<div data-role="popup" id="popupSensor" data-overlay-theme="b"
+					data-theme="b" data-corners="false">
+					     <a href="#" data-rel="back"
+						class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Fechar</a><img
+						class="popphoto" src="images/telaSensor.jpg"
+						style="max-height: 512px;">
+				</div>
+			</div>
+		</article>
+		<footer data-role="footer" data-position="fixed" data-theme="b">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#" id="linkIndexInfSensor" data-icon="home">Home</a></li>
+					<li><a href="#" id="linkLocalInfSensor" data-icon="grid">Local</a></li>
+					<li><a href="#" id="linkAmbienteInfSensor" data-icon="grid">Ambiente</a></li>
+					<li><a href="#" id="linkSensorInfSensor" data-icon="grid">Sensor</a></li>
+					<li><a href="#" id="linkInfoSensor" data-icon="info">Info</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<script type="text/javascript" src="js/toastr.min.js"></script>
+	<script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/info.js"></script>
+</body>
+</html>
