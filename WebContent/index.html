@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Temperatura Ambiente</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="css/toastr.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="css/style.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body onload="iniciarBarraProgresso()">
+	<div id="pgLocal" data-role="page">
+		<header data-role="header" class="cor-azul" data-position="fixed" data-theme="b">
+			<h1>Sensores em Alerta</h1>
+		</header>
+		<article data-role="content">
+			<ul id="listSensorAlerta" class="listview" data-role="listview" data-filter="true" data-filter-placeholder="Filtrar ..." >
+			</ul>
+		</article>
+		<footer data-role="footer" data-position="fixed" data-theme="b">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#" id="linkIndex" data-icon="home">Home</a></li>
+					<li><a href="#" id="linkLocal" data-icon="grid" >Local</a></li>
+					<li><a href="#" id="linkAmbiente" data-icon="grid">Ambiente</a></li>
+					<li><a href="#" id="linkSensor" data-icon="grid">Sensor</a></li>
+					<li><a href="#" id="linkInfo" data-icon="info">Info</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<script type="text/javascript" src="js/toastr.min.js"></script>
+	<script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

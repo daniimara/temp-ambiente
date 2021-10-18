@@ -1,0 +1,10 @@
+applications:
+- services:
+  - tempAmbiente-MySQL
+  disk_quota: 1024M
+  host: tempambiente
+  name: tempambiente
+  path: tempambiente.war
+  domain: mybluemix.net
+  instances: 1
+  memory: 1024M

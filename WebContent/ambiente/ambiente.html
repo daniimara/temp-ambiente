@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Temperatura Ambiente</title>
+<meta name="viewport"	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="../css/toastr.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body onload="iniciarBarraProgresso()">
+	<div id="pgAmbiente" data-role="page">
+		<header data-role="header" class="cor-azul"  data-position="fixed" data-theme="b">
+			<h1>Ambiente</h1>
+			<a data-role="button" id="pgAddNovo" data-icon="plus" class="ui-btn-right">Novo</a>
+		</header>
+		<article data-role="content">
+			<ul id="listAmbiente" class="listview" data-role="listview" data-filter="true" data-filter-placeholder="Filtrar ..." >
+			</ul>
+		</article>
+		<footer data-role="footer" data-position="fixed" data-theme="b">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#" id="linkIndex" data-icon="home">Home</a></li>
+					<li><a href="#" id="linkLocal" data-icon="grid" >Local</a></li>
+					<li><a href="#" id="linkAmbiente" data-icon="grid">Ambiente</a></li>
+					<li><a href="#" id="linkSensor" data-icon="grid">Sensor</a></li>
+					<li><a href="#" id="linkInfo" data-icon="info">Info</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<div id="pgAddAmbiente" data-role="page" >
+		<header data-role="header" data-position="fixed" class="cor-azul"  data-theme="b">
+			<h1>Ambiente</h1>
+			<a data-role="button" id="pgAddBack" data-icon="back" class="ui-btn-left">Voltar</a>
+		</header>
+		<article id="pgAddAmbienteCnt" data-role="content">
+			<div id="pgAddAmbienteDetails" class="tab-content">
+				<div data-role="fieldcontain">
+					<label for="pgAddAmbienteDescricao">Descrição:<span
+						style='color: red;'>*</span></label> <input title="Descrição" type="text"
+						name="pgAddAmbienteDescricao" id="pgAddAmbienteDescricao"
+						placeholder="Descrição" autocomplete="off" data-clear-btn="true"
+						class="required" />
+				</div>
+				<div class="ui-field-contain">
+					    <label for="pgAddAmbienteStatus">Status:<span
+						style='color: red;'>*</span></label>      <select
+						name="slAddAmbienteStatus" id="pgAddAmbienteStatus">
+						<option value="0">Escolha uma opção...</option>
+						<option value="1">Ativo</option>
+						<option value="2">Inativo</option>
+					</select>
+				</div>
+				<div class="ui-field-contain">
+					    <label for="pgAddComboLocal">Local:<span
+						style='color: red;'>*</span></label>      <select name="slAddComboLocal"
+						id="pgAddComboLocal"></select>
+				</div>
+				<div>
+				     <label for="pgAddAmbienteTempMini">Temperatura Mínima:<span
+						style='color: red;'>*</span></label>
+				     <input type="number" data-clear-btn="false" name="pgAddAmbienteTempMini" id="pgAddAmbienteTempMini" value="">      
+				</div>
+				<div>
+				     <label for="pgAddAmbienteTempMed">Temperatura Média:</label>
+				     <input type="number" disabled="disabled" data-clear-btn="false" name="pgAddAmbienteTempMed" id="pgAddAmbienteTempMed" value="">      
+				</div>
+				<div>
+				     <label for="pgAddAmbienteTempMax">Temperatura Máxima:<span
+						style='color: red;'>*</span></label>
+				     <input type="number" data-clear-btn="false" name="pgAddAmbienteTempMax" id="pgAddAmbienteTempMax" value="">      
+				</div>
+			</div>
+			<div id="pgAddAmbienteFtrNavBar" data-role="navbar">
+				<ul id="ulOpcoes" class="ui-grid-a">
+					<li id="btnSalve">
+						<a type="submit" id="pgAddAmbienteSave" data-icon="action">Salvar</a>
+					</li>
+				</ul>
+				<div data-role='popup' id='popupDialog'  data-dismissible='false' > 
+				<div data-role='header' > 
+				    <h1>Excluir</h1> 
+				    </div> 
+				    <div role='main' class='ui-content' id="pnlExcluir"> 
+				        <h3 class='ui-title'>Deseja realmente excluir esse item ?</h3> 
+				    	<p>Esta ação não pode ser desfeita.</p> 
+				        <a href='#' class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b' id="pgAddCancelar" data-rel='back'>Cancelar</a> 
+				        <a type='submit' id='pgAddDelete' class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b' data-rel='back' data-transition='flow'>Excluir</a> 
+				    </div> 
+				</div>
+			</div>
+		</article>
+		<footer data-role="footer" data-position="fixed" data-theme="b">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#" id="linkIndexCad" data-icon="home">Home</a></li>
+					<li><a href="#" id="linkLocalCad" data-icon="grid" >Local</a></li>
+					<li><a href="#" id="linkAmbienteCad" data-icon="grid">Ambiente</a></li>
+					<li><a href="#" id="linkSensorCad" data-icon="grid">Sensor</a></li>
+					<li><a href="#" id="linkInfoCad" data-icon="info">Info</a></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+	<script type="text/javascript" src="../js/toastr.min.js"></script>
+	<script type="text/javascript" src="../js/util.js"></script>
+	<script type="text/javascript" src="ambiente.js"></script>
+</body>
+</html>

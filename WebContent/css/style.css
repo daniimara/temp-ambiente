@@ -1,0 +1,74 @@
+.img-thumbnail {
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	padding: 4px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+.cor-azul{
+	background: #4682B4;
+}
+
+
+#linkIndex, #linkLocal, #linkAmbiente, #linkSensor, #linkInfo {
+	background: #4682B4;
+}
+
+#linkIndexCad, #linkLocalCad, #linkAmbienteCad, #linkSensorCad, #linkInfoCad,
+#linkIndexInfSensor,#linkLocalInfSensor,#linkAmbienteInfSensor,#linkSensorInfSensor,#linkInfoSensor,
+#linkIndexInfAmbiente,#linkLocalInfAmbiente,#linkAmbienteInfAmbiente,#linkSensorInfAmbiente,#linkInfoAmbiente,
+#linkIndexInfLocal,#linkLocalInfLocal,#linkAmbienteInfLocal,#linkSensorInfLocal,#linkInfoLocal {
+	background: #4682B4;
+}
+#pgAddBack, #pgAddNovo, #pgAddDelete, #pgAddCancelar,#pgAddLocalBack, #pgAddAmbienteBack,#pgAddSensorBack, #popupDialog > div:first-child{
+	background: #36648B;
+	color: white;
+}
+
+#pnlExcluir{
+background: #e9e9e9;
+}
+#popupDialog{
+background: #e9e9e9;
+max-width:90%;
+max-height:90%;
+}
+
+.imagemInfo {
+	width:100%;
+	height:auto;
+	text-align:center;
+	
+}
+
+.imagemInfoCenter {
+	width:70%;
+	height:auto;
+}
+
+iframe { border: none; }
+
+#popupPanel-popup {
+    right: 0 !important;
+    left: auto !important;
+}
+#popupPanel {
+    width: 200px;
+    border: 1px solid #000;
+    border-right: none;
+    background: rgba(0,0,0,.5);
+    margin: -1px 0;
+}
+#popupPanel .ui-btn {
+    margin: 2em 15px;
+}
+.ui-icon-myapp-github {
+	background: url("../images/GitHub-Mark-32px.png") no-repeat !important;
+}
